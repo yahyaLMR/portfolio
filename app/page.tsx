@@ -1,5 +1,4 @@
 "use client"
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Hero from "@/components/hero"

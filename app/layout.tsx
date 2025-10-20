@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -31,8 +32,26 @@ export default function RootLayout({
 }>) {
   return (
     <html className='dark' lang="en">
+      <head>
+        {/* Preconnect to improve font loading */}
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        {/* Preconnect to FontAwesome CDN */}
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        {/* Load FontAwesome CSS immediately but non-blocking */}
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <noscript>
+          <link 
+            rel="stylesheet" 
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          />
+        </noscript>
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
+        {/* Defer Analytics */}
         <Analytics />
       </body>
     </html>
