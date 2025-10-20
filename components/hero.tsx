@@ -1,13 +1,23 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Vortex } from "./ui/vortex"
+import dynamic from "next/dynamic"
+
+// Dynamically import Vortex with no SSR to prevent blocking
+const Vortex = dynamic(() => import("./ui/vortex").then(mod => mod.Vortex), {
+  ssr: false,
+  loading: () => null, // No loading state, just show content
+})
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState("")
+  const [showVortex, setShowVortex] = useState(false)
   const fullText = "Full-Stack Web Developer"
 
   useEffect(() => {
+    // Show vortex after initial paint
+    const vortexTimer = setTimeout(() => setShowVortex(true), 100)
+    
     let index = 0
     const timer = setInterval(() => {
       if (index <= fullText.length) {
@@ -18,7 +28,10 @@ export default function Hero() {
       }
     }, 100)
 
-    return () => clearInterval(timer)
+    return () => {
+      clearTimeout(vortexTimer)
+      clearInterval(timer)
+    }
   }, [])
 
   const scrollToProjects = () => {
@@ -26,16 +39,19 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <Vortex
-        backgroundColor="transparent"
-        rangeY={800}
-        particleCount={500}
-        baseHue={270}
-        className="relative inset-0"
-      >
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+      {/* Load Vortex after content is visible */}
+      {showVortex && (
+        <Vortex
+          backgroundColor="transparent"
+          rangeY={800}
+          particleCount={500}
+          baseHue={270}
+          className="absolute inset-0"
+        />
+      )}
       
-      {/* Content - Optimized for LCP */}
+      {/* Content - Optimized for LCP - paints immediately */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           {/* LCP Element - No animations, immediate paint */}
@@ -82,7 +98,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-              </Vortex>
     </section>
   )
 }
