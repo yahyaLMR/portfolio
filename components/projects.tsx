@@ -1,4 +1,7 @@
 "use client"
+import arganora from "@/public/arganora.webp"
+import rosame from "@/public/rosame.webp"
+import Image from "next/image"
 
 import { useState } from "react"
 
@@ -8,7 +11,7 @@ interface Project {
   techStack: string[]
   githubUrl: string
   liveUrl: string
-  imageQuery: string
+  image: any
 }
 
 interface TechIcon {
@@ -40,61 +43,20 @@ export default function Projects() {
     return techMap[tech] || techMap["default"]
   }
 
-  const projects: Project[] = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "A full-featured e-commerce platform with shopping cart, payment integration, and admin dashboard. Built with React and Node.js.",
-      techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-      githubUrl: "https://github.com/yourusername/ecommerce",
-      liveUrl: "https://ecommerce-demo.com",
-      imageQuery: "modern ecommerce website interface",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      techStack: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-      githubUrl: "https://github.com/yourusername/task-manager",
-      liveUrl: "https://taskmanager-demo.com",
-      imageQuery: "task management dashboard interface",
-    },
-    {
-      title: "Weather Dashboard",
-      description:
-        "A beautiful weather application that provides real-time weather data, forecasts, and interactive maps using external APIs.",
-      techStack: ["React", "JavaScript", "OpenWeather API", "CSS3"],
-      githubUrl: "https://github.com/yourusername/weather-app",
-      liveUrl: "https://weather-demo.com",
-      imageQuery: "weather app dashboard interface",
-    },
-    {
-      title: "Portfolio CMS",
-      description:
-        "A content management system for portfolios with markdown support, image optimization, and SEO features.",
-      techStack: ["Next.js", "React", "MongoDB", "Tailwind CSS"],
-      githubUrl: "https://github.com/yourusername/portfolio-cms",
-      liveUrl: "https://portfolio-cms-demo.com",
-      imageQuery: "content management system interface",
-    },
-        {
-      title: "Weather Dashboard",
-      description:
-        "A beautiful weather application that provides real-time weather data, forecasts, and interactive maps using external APIs.",
-      techStack: ["React", "JavaScript", "OpenWeather API", "CSS3"],
-      githubUrl: "https://github.com/yourusername/weather-app",
-      liveUrl: "https://weather-demo.com",
-      imageQuery: "weather app dashboard interface",
-    },
-    {
-      title: "Portfolio CMS",
-      description:
-        "A content management system for portfolios with markdown support, image optimization, and SEO features.",
-      techStack: ["Next.js", "React", "MongoDB", "Tailwind CSS"],
-      githubUrl: "https://github.com/yourusername/portfolio-cms",
-      liveUrl: "https://portfolio-cms-demo.com",
-      imageQuery: "content management system interface",
-    },
+  const projects: Project[] = [{
+    title: "arganora-cooperative",
+description:"Arganora Cooperative is a modern web application designed to showcase premium Moroccan Argan oil products.",
+techStack: ["React","TypeScript","Tailwind CSS","CSS3"],
+githubUrl: "https://github.com/yahyaLMR/arganora-cooperative",
+liveUrl: "https://arganora-cooperative.vercel.app/",
+image: arganora},{
+
+title: "rosame-marrakech",
+description:"Rosame Marrakech a single-page application (SPA) or a business landing page built with React. The structure suggests a portfolio site layout with distinct sections implemented as components",
+techStack: ["React","Vite","JavaScript","Tailwind CSS"],
+githubUrl: "https://github.com/yahyaLMR/rosame-marrakech",
+liveUrl: "https://rosame-marrakech.vercel.app/",
+image: rosame}
   ]
 
   const visibleProjects = projects.slice(0, visibleCount)
@@ -124,11 +86,12 @@ export default function Projects() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Project Image */}
-                <div className="relative h-48 overflow-hidden bg-muted">
-                  <img
-                    src={`/.jpg?height=300&width=500&query=${project.imageQuery}`}
+                <div className="relative h-70 overflow-hidden bg-muted">
+                  <Image
+                    src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
