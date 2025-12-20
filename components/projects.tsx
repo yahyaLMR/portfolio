@@ -1,6 +1,14 @@
 "use client"
 import arganora from "@/public/arganora.webp"
 import rosame from "@/public/rosame.webp"
+import appleLandingPage from "@/public/apple landing page.webp"
+import noortomark from "@/public/noortomark.webp"
+import noortoshop from "@/public/noortoshop.webp"
+import furnature from "@/public/furnature.webp"
+import movieApp from "@/public/movie app.webp"
+import musicApp from "@/public/music app.webp"
+import mochisMart from "@/public/mochis mart.webp"
+import todoApp from "@/public/todo app.webp"
 import Image from "next/image"
 
 import { useState } from "react"
@@ -25,6 +33,7 @@ export default function Projects() {
   // Tech stack icon mapping
   const getTechIcon = (tech: string): TechIcon => {
     const techMap: Record<string, TechIcon> = {
+      "HTML5": { icon: "fa-brands fa-html5", color: "#E34F26" },
       "React": { icon: "fa-brands fa-react", color: "#61DAFB" },
       "Node.js": { icon: "fa-brands fa-node-js", color: "#339933" },
       "MongoDB": { icon: "fa-solid fa-database", color: "#47A248" },
@@ -37,6 +46,8 @@ export default function Projects() {
       "OpenWeather API": { icon: "fa-solid fa-cloud-sun", color: "#FF6B35" },
       "CSS3": { icon: "fa-brands fa-css3-alt", color: "#1572B6" },
       "Next.js": { icon: "fa-solid fa-arrow-up-right-dots", color: "#000000" },
+      "Vite": { icon: "fa-solid fa-bolt", color: "#646CFF" },
+      "API": { icon: "fa-solid fa-network-wired", color: "#8C8C8C" },
       // Default fallback
       "default": { icon: "fa-solid fa-code", color: "#8C8C8C" }
     }
@@ -56,7 +67,70 @@ description:"Rosame Marrakech a single-page application (SPA) or a business land
 techStack: ["React","Vite","JavaScript","Tailwind CSS"],
 githubUrl: "https://github.com/yahyaLMR/rosame-marrakech",
 liveUrl: "https://rosame-marrakech.vercel.app/",
-image: rosame}
+image: rosame},
+{
+  title: "Mochi-s-Mart",
+description:"A single-page e-commerce website designed for a fictional cat store. It features a product catalog with categories (Food, Toys, Accessories), a functional shopping cart with local storage persistence",
+techStack: ["HTML5","CSS3","JavaScript"],
+githubUrl: "https://github.com/yahyaLMR/Mochi-s-Mart",
+liveUrl: "https://mochi-s-mart.vercel.app/",
+image: mochisMart},{
+  title: "Todo-App",
+description:"A lightweight, responsive, and accessible Todo List application that runs entirely in the browser. It features task management (add, toggle, delete), filtering (All/Active/Completed), dark mode support, and data persistence using local storage.",
+techStack: ["HTML5","CSS3","JavaScript"],
+githubUrl: "https://github.com/yahyaLMR/Todo-App",
+liveUrl: "https://todo-app-rosy-one-14.vercel.app/",
+image: todoApp,
+},
+{
+  title: "apple-landing-page",
+  description: "A responsive product landing page for the iPhone 13 Pro Max. It features a navigation bar, a showcase section, and an interactive footer that allows users to select different phone colors (Gold, Blue, Black, Beige, Red). Clicking a color dynamically updates both the displayed phone image and the website's background color.",
+  techStack: ["HTML5", "CSS3", "JavaScript"],
+  githubUrl: "https://github.com/yahyaLMR/apple-landing-page",
+  liveUrl: "https://yahyalmr.github.io/apple-landing-page/",
+  image: appleLandingPage
+},
+{
+  title: "Noortomark",
+  description: "Noortomark is a premium digital agency website designed to showcase high-end services such as luxury branding, premium design, global marketing, and business consulting. The application is a modern Single Page Application (SPA) featuring internationalization (multi-language support)",
+  techStack: ["Tailwind CSS", "Vite", "React", "JavaScript"],
+  githubUrl: "https://github.com/HASBAOUI-MOHCINE/Noortomark-v2",
+  liveUrl: "https://noortomark.com/",
+  image: noortomark
+},
+{
+  title: "noor-to-shop",
+  description: "noor to shop is a modern, minimal e-commerce application designed for curated warm essentials and intentional living. It features a clean, aesthetic user interface that includes product browsing, collections (New Arrivals, etc.), and a fully functional shopping cart system.",
+  techStack: ["Tailwind CSS", "Vite", "React", "JavaScript"],
+  githubUrl: "https://github.com/yahyaLMR/noor-to-shop",
+  liveUrl: "https://noor-to-shop.vercel.app/",
+  image: noortoshop
+},
+{
+  title: "Furnature",
+  description: "Furnature is a web application for a Moroccan furniture brand specializing in ecological and sustainable designs. The brand transforms recycled materials into creative, stylish, and chic furniture pieces. The site showcases their collection and emphasizes their commitment to sustainability and local craftsmanship.",
+  techStack: ["Tailwind CSS", "Vite", "React", "JavaScript"],
+  githubUrl: "https://github.com/yahyaLMR/furnature",
+  liveUrl: "https://re-furnature.vercel.app/",
+  image: furnature
+},
+{
+  title: "Movie-App",
+  description: "VibeFlix is a lightweight, responsive movie discovery application that runs entirely in the browser. It integrates with The Movie Database (TMDb) API to allow users to search for titles, browse popular films, filter by genre, and sort results by rating or title. The UI features a modern dark-themed design with smooth animations and accessibility support.",
+  techStack: ["HTML5", "CSS3", "JavaScript", "API"],
+  githubUrl: "https://github.com/yahyaLMR/Movie-App",
+  liveUrl: "https://movie-app-five-steel-10.vercel.app/",
+  image: movieApp
+},
+{
+  title: "Music-App",
+  description: "VibeTunes is a modern, single-page music player application that allows users to search for songs and artists using the Deezer API. It features a sleek, responsive interface where users can play 30-second track previews, view album art, and browse dynamic \"Top Tracks\" results. The app includes a fully functional custom audio player with seekable progress bars, play/pause controls, and genre search suggestions.",
+  techStack: ["HTML5", "CSS3", "JavaScript", "API"],
+  githubUrl: "https://github.com/yahyaLMR/Music-App",
+  liveUrl: "https://music-app-xi-ruby.vercel.app/",
+  image: musicApp
+}
+
   ]
 
   const visibleProjects = projects.slice(0, visibleCount)

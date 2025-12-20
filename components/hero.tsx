@@ -41,15 +41,15 @@ export default function Hero() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
       {/* Load Vortex after content is visible */}
-      {showVortex && (
+      
         <Vortex
           backgroundColor="transparent"
           rangeY={800}
           particleCount={500}
           baseHue={270}
-          className="absolute inset-0"
-        />
-      )}
+          className="relative inset-0"
+        >
+      
       
       {/* Content - Optimized for LCP - paints immediately */}
       <div className="container mx-auto px-4 relative z-10">
@@ -97,7 +97,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-      </div>
+      </div></Vortex>
     </section>
   )
 }
