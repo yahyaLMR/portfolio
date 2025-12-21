@@ -1,4 +1,5 @@
 "use client"
+import quickBill from "@/public/quickbill.webp"
 import arganora from "@/public/arganora.webp"
 import rosame from "@/public/rosame.webp"
 import appleLandingPage from "@/public/apple landing page.webp"
@@ -54,7 +55,16 @@ export default function Projects() {
     return techMap[tech] || techMap["default"]
   }
 
-  const projects: Project[] = [{
+  const projects: Project[] = [
+    {
+      title: "Quick Bill",
+      description: "Quick Bill is a full‑stack invoicing application designed to help users manage clients, configure company settings, and create invoices with VAT and discounts. It features a dashboard for viewing statistics and revenue, along with tools for managing invoices (create, edit, duplicate, export to CSV/PDF) and tracking client details.",
+      techStack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+      githubUrl: "https://github.com/yahyaLMR/quick-bill",
+      liveUrl: "https://quick-bill-flame.vercel.app/",
+      image: quickBill
+    },
+    {
     title: "arganora-cooperative",
 description:"Arganora Cooperative is a modern web application designed to showcase premium Moroccan Argan oil products.",
 techStack: ["React","TypeScript","Tailwind CSS","CSS3"],
