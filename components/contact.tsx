@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import emailjs from "@emailjs/browser"
 
 import { useState } from "react"
 
@@ -20,6 +21,7 @@ export default function Contact() {
   })
 
   const [showPopup, setShowPopup] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const validateForm = () => {
     const newErrors = {
@@ -57,27 +59,47 @@ export default function Contact() {
     e.preventDefault()
 
     if (validateForm()) {
-      // Form is valid - in a real app, you would send this to a backend
-      console.log("Form submitted:", formData)
-      setShowPopup(true)
+      setIsSubmitting(true)
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-      setErrors({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
+      const serviceId = "service_rttxjxb"
+      const templateId = "template_q7kwurq"
+      const publicKey = "md0g7BMSLd4dQRq9S"
 
-      setTimeout(() => {
-        setShowPopup(false)
-      }, 5000)
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,        // Also sending as 'name' and 'email' in case your template uses those variable names
+        reply_to: formData.email, // This sets the "Reply-To" field in the email client        to_name: "Yahya",
+        subject: formData.subject,
+        message: formData.message,
+      }
+
+      emailjs
+        .send(serviceId, templateId, templateParams, publicKey)
+        .then((response) => {
+          console.log("Email sent successfully!", response)
+          setShowPopup(true)
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          })
+          setErrors({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          })
+          setTimeout(() => {
+            setShowPopup(false)
+          }, 5000)
+        })
+        .catch((error) => {
+          console.error("Error sending email:", error)
+        })
+        .finally(() => {
+          setIsSubmitting(false)
+        })
     }
   }
 
@@ -255,9 +277,12 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg"
+                  disabled={isSubmitting}
+                  className={`w-full px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg ${
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:scale-105"
+                  }`}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
